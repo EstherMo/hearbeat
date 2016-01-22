@@ -1,0 +1,40 @@
+
+<div class = "main_content">
+	
+
+<% if @post_submitted %>
+<h2> Thank You!</h2>
+<% else %>
+
+<h3> write a new post </h3>
+
+	<form class="form" action="/<%=@topic%>/posts/new" method="post">
+	
+	<div class="input-row">
+		<label for="title">Title </label>
+		<input type="text" name = "title" placeholder = "title"/>
+	</div>
+
+	</br>
+
+	<div class="input-row">
+		<label for="date">Date </label>
+		<input type="text" name="today_date" placeholder = "Enter today's date" />
+	</div>
+
+	</br>
+
+	<div class="input-row">
+		<label for="message"> Message </label>
+		<textarea name="message"> </textarea>
+	</div>
+
+	</br>
+
+	<div class="input-row">
+	<input type="submit" value="Create Post" />
+	</div>
+
+	</form>
+	<% end %>
+</div>

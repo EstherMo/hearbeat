@@ -1,0 +1,20 @@
+<div class="single_post">
+	<p>
+		<%= @post[0]["title"] %> </br>
+		<%= @post[0]["message"] %>
+	</p>
+</div>
+
+
+<% @post_comments.each do |comment| %>
+	<div class="single_post">
+		<p>
+			<%= comment ["title"] %> </br>
+			<%= comment["message"] %> </br>
+			likes: <%= comment ["likes"] %> </br>
+		</p>
+	</div>
+<% end %>
+
+
+

@@ -1,0 +1,25 @@
+<!-- <h1> heartbeat forum </h1> -->
+
+
+
+<% @topics.each do |topic| %>
+	<!-- <div class="container"> -->
+	<% counter = 1 %>
+		<div class= "topics">
+			<h4> <%= topic["name"] %>: <%= topic["description"] %> <a class="new_post" href="/<%= topic["name"] %>/posts/new"> create new post </a> </h4> 
+				<% @posts.each do |post| %>
+					<% if post["topic_id"] == topic["id"] %>
+						<div class= "posts">
+							<a href= "/<%= topic["name"] %>/posts/<%=counter%>/id=<%= post["id"]%>" > <%= post["title"] %>: <%= post["today_date"] %> </a> 
+							<a class="edit_post" href="/<%= topic["name"] %>/post/<%= post["id"]%>/edit"> Edit post </a> 
+						</div>
+						<% counter += 1 %>
+					<% end %>
+				<% end %>
+		</div>	
+	<!-- </div> -->
+<% end %>
+
+	
+
+
