@@ -66,6 +66,12 @@ module Forum
       @content = @@db.exec_params(
         "SELECT message FROM posts WHERE id = '#{@id}'"
         ).first["message"]
+      @title = @@db.exec_params(
+        "SELECT title FROM posts WHERE id = '#{@id}'"
+        ).first["title"]
+      @date = @@db.exec_params(
+        "SELECT today_date FROM posts WHERE id = '#{@id}'"
+        ).first["today_date"]
 
       erb :edit_post
     end 
@@ -84,6 +90,23 @@ module Forum
 
       erb :edit_post
 
+    end
+
+    get "/:topic/post/:id/delete" do 
+      @topic = params[:topic]
+      @id = params[:id]
+      erb :delete_post
+    end
+
+
+    delete "/:topic/post/:id/delete" do 
+      id = params["id"]
+      @post_deleted = true
+      @@db.exec_params(
+      "DELETE FROM posts 
+      WHERE id = '#{id}'"
+      )
+      erb :delete_post
     end
 
     # post "/login" do

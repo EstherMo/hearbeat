@@ -1,0 +1,17 @@
+<div class = "main_content">
+	<% if @post_deleted %>
+		<h2> Your post has now been deleted</h2>
+	<% else %>
+		<h3> Are you sure you want to delete this post ?</h3>
+
+		<form class="form" action="/<%=@topic%>/post/<%=@id%>/delete" method="post">
+			<input type="hidden" name = "_method" value="DELETE"/>
+			</br>
+
+			<div class="input-row">
+				<input type="submit" value="Delete Post" />
+			</div>
+
+		</form>
+	<% end %>
+</div>

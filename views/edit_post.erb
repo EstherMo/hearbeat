@@ -1,41 +1,40 @@
 
 <div class = "main_content">
 	
+	<% if @post_edited %>
+		<h2> Thank You!</h2>
+	<% else %>
 
-<% if @post_edited %>
-<h2> Thank You!</h2>
-<% else %>
+		<h3> Edit this post </h3>
 
-<h3> Edit this post </h3>
+		<form class="form" action="/<%=@topic%>/post/<%=@id%>/edit" method="post">
+			<input type="hidden" name = "_method" value="PUT"/>
+		
+			<div class="input-row">
+				<label for="title">Title </label>
+				<input type="text" name = "title" placeholder = <%= @title %>/>
+			</div>
 
-	<form class="form" action="/<%=@topic%>/post/<%=@id%>/edit" method="post">
-		<input type="hidden" name = "_method" value="PUT"/>
-	
-	<div class="input-row">
-		<label for="title">Title </label>
-		<input type="text" name = "title"/>
-	</div>
+			</br>
 
-	</br>
+			<div class="input-row">
+				<label for="date">Date </label>
+				<input type="text" name="today_date" placeholder = <%= @date %> />
+			</div>
 
-	<div class="input-row">
-		<label for="date">Date </label>
-		<input type="text" name="today_date" placeholder = "Enter today's date" />
-	</div>
+			</br>
 
-	</br>
+			<div class="input-row">
+				<label for="message"> Message </label>
+				<textarea name="message"> <%= @content %> </textarea>
+			</div>
 
-	<div class="input-row">
-		<label for="message"> Message </label>
-		<textarea name="message"> <%= @content %> </textarea>
-	</div>
+			</br>
 
-	</br>
+			<div class="input-row">
+				<input type="submit" value="Edit Post" />
+			</div>
 
-	<div class="input-row">
-	<input type="submit" value="Edit Post" />
-	</div>
-
-	</form>
-	<% end %>
+		</form>
+		<% end %>
 </div>
