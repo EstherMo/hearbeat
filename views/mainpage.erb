@@ -22,8 +22,7 @@
 						<a class="edit_post" href="/<%= topic["name"] %>/post/<%= post["id"]%>/edit"> Edit post </a> 
 						<a class="edit_post" href="/<%= topic["name"] %>/post/<%= post["id"]%>/delete"> Delete post </a>
 						<!-- connecting to database to get the amount of replies for this post -->
-						<% @@db = PG.connect(dbname: "heartbeat_forum") %>
-						<% @comments = @@db.exec_params("SELECT *
+						<% @comments = db.exec_params("SELECT *
               FROM posts
               Join comments
               ON posts.id = comments.post_id

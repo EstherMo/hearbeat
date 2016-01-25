@@ -12,6 +12,10 @@ module Forum
         raise 'I SHOULD NOT HAPPEN'
         @@db = PG.connect(dbname: "heartbeat_forum")
       end
+
+      def db
+        @@db
+      end
      
       def current_user
         if session["user_id"]

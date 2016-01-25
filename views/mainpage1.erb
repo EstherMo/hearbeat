@@ -25,8 +25,7 @@
 					    <td><a href= "/<%= topic["name"] %>/posts/<%=counter%>/<%= post["id"]%>" > <%= post["title"] %>: <%= post["today_date"] %> </a></td>
 					    <td><a href="/<%= topic["name"] %>/post/<%= post["id"]%>/edit"> Edit post </a></td>		
 					    <td><a href="/<%= topic["name"] %>/post/<%= post["id"]%>/delete"> Delete post </a></td>
-					    <% @@db = PG.connect(dbname: "heartbeat_forum") %>
-								<% @comments = @@db.exec_params("SELECT *
+								<% @comments = db.exec_params("SELECT *
 		              FROM posts
 		              Join comments
 		              ON posts.id = comments.post_id
