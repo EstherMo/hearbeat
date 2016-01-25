@@ -4,8 +4,14 @@ module Forum
 
     enable :sessions
     set :method_override, true 
-    @@db = PG.connect(dbname: "heartbeat_forum")
-
+    
+      if ENV["RACK_ENV"] == 'production'
+      uri = URI.parse(ENV['DATABASE_URL'])
+      @@db = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
+       else
+          @@db = PG.connect(dbname: "heartbeat_forum")
+       end
+     
       def current_user
         if session["user_id"]
           @user ||= @@db.exec_params(<<-SQL, [session["user_id"]]).first
