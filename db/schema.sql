@@ -27,8 +27,6 @@ CREATE TABLE posts (
  	topic_id INTEGER
 );
 
-
-
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   title VARCHAR,
@@ -39,10 +37,10 @@ CREATE TABLE comments (
   post_id INTEGER
 );
 
-insert into topics(name,description) values ('General', 'this is for general topics');
-insert into topics(name,description) values ('Announcements', 'this is for forum Announcements');
-insert into topics(name,description) values ('Questions', 'this is for questions');
-insert into posts(title,message,today_date,topic_id) values ('first post','this is a test','march 20',1);
+insert into topics(name,description) values ('General', 'This is for general topics');
+insert into topics(name,description) values ('Announcements', 'This is for forum Announcements');
+insert into topics(name,description) values ('Questions', 'Please post all questions here');
+insert into posts(title,message,today_date,topic_id) values ('first post','this is a test','1/24/2015',1);
 insert into posts(title,message,today_date,topic_id) values ('second post','this is a test as well','march 20',2);
 insert into posts(title,message,today_date,topic_id) values ('third post','this is a question post','march 20',3);
 insert into posts(title,message,today_date,topic_id) values ('another post','this is the second question post','march 20',3);
