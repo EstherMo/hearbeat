@@ -161,8 +161,8 @@ module Forum
       date = params["today_date"]
        @@db.exec_params(
         "UPDATE posts 
-        SET title= '#{title}',message= '#{message}',today_date = '#{date}'
-        WHERE id = '#{id}'"
+        SET title= $1,message= $2,today_date = $3
+        WHERE id = $4", [title, message, date, id]
         )
 
       erb :edit_post
