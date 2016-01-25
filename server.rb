@@ -9,7 +9,6 @@ module Forum
         uri = URI.parse(ENV['DATABASE_URL'])
         @@db = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
       else
-        raise 'I SHOULD NOT HAPPEN'
         @@db = PG.connect(dbname: "heartbeat_forum")
       end
 
