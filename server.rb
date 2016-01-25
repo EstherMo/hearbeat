@@ -5,13 +5,13 @@ module Forum
     enable :sessions
     set :method_override, true 
     
-      if ENV["RACK_ENV"] == 'production'
+      # if ENV["RACK_ENV"] == 'production'
         uri = URI.parse(ENV['DATABASE_URL'])
         puts uri.hostname, uri.port, uri.path, uri.user, uri.password
         @@db = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
-      else
-        @@db = PG.connect(dbname: "heartbeat_forum")
-      end
+      # else
+      #   @@db = PG.connect(dbname: "heartbeat_forum")
+      # end
      
       def current_user
         if session["user_id"]
