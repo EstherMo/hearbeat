@@ -1,0 +1,59 @@
+
+<div class="container" style="margin-top: 35px">
+<div class="page-header page-heading">
+    <h1 class="pull-left">Forums</h1>
+  </div>
+
+   <div class="clearfix"></div>
+  </div>
+
+<p class="lead">Welcome to HeartBeat. This forum was created to discuss everything that relates to tradional Jewish Music. You can post links, chords, notes ,lyrics and more.. You may also discuss any ideas, critics, feature requests and all the ideas regarding our website. Please follow the forum rules and always check before posting to prevent duplicate posts.</p>
+
+<% @topics.each do |topic| %>
+	<% counter = 1 %>
+		<div >
+			<table style="width:100%" class="table forum table-striped">
+			  <tr>
+			    <td> <h4> <%= topic["name"] %> <br><small> <%= topic["description"] %> </small> <h4> </td>
+			    <td></td>
+			    <td></td>
+			    <td><a href="/<%= topic["name"] %>/posts/new"> create new post </a></td>		
+			  </tr>
+			  <% @posts.each do |post| %>
+			  	<% if post["topic_id"] == topic["id"] %>
+					  <tr>
+					    <td><a href= "/<%= topic["name"] %>/posts/<%=counter%>/<%= post["id"]%>" > <%= post["title"] %>: <%= post["today_date"] %> </a></td>
+					    <td><a href="/<%= topic["name"] %>/post/<%= post["id"]%>/edit"> Edit post </a></td>		
+					    <td><a href="/<%= topic["name"] %>/post/<%= post["id"]%>/delete"> Delete post </a></td>
+					    <% @@db = PG.connect(dbname: "heartbeat_forum") %>
+								<% @comments = @@db.exec_params("SELECT *
+		              FROM posts
+		              Join comments
+		              ON posts.id = comments.post_id
+		              WHERE posts.id = '#{post["id"]}' " 
+		              ).to_a %>
+					    <td class="text-center hidden-xs hidden-sm">comments: <%= @comments.length%> </td>
+					  </tr>
+			
+
+			<% counter += 1 %>
+			<% end %>
+			<% end %>
+
+			</table>
+<% end %>
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+	
+
+

@@ -1,19 +1,34 @@
 <div class="single_post">
-	<p>
-		<%= @post[0]["title"] %> </br>
-		<%= @post[0]["message"] %>
+	<p class="lead post">
+		Title: <%= @post["title"] %> </br>
+		Date: <%= @post["today_date"]%> </br>
+		<% if @user %>
+		By: <%= @user["name"] %> </br>
+		<% end %>
+		Message: <%= @post["message"] %> </br> </br>
+		<% id = @post["id"] %>
+
+	<a class="btn btn-primary" href="/<%= @topic %>/post/<%= id %>/newreply"> Reply to this post </a>
+	<a class="new_post reply btn btn-primary" href="/<%= @topic %>/post/<%= @post["id"]%>/edit"> Edit post </a>
+	<a class="btn btn-primary" href="/<%= @topic %>/post/<%= @post["id"]%>/delete"> Delete post </a>
 	</p>
+
+		
+	
 </div>
+
+</br>
 
 
 <% @post_comments.each do |comment| %>
-	<div class="single_post">
-		<p>
-			<%= comment ["title"] %> </br>
-			<%= comment["message"] %> </br>
+	<div class="single_post post">
+		<p class="lead">
+			Title: <%= comment ["title"] %> </br>
+			Message: <%= comment["message"] %> </br>
 			likes: <%= comment ["likes"] %> </br>
 		</p>
 	</div>
+	</br>
 <% end %>
 
 

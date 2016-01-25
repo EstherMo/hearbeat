@@ -1,0 +1,31 @@
+<div class = "main_content">
+
+	<% if @signed_up %>
+		<h2> Thank You!</h2>
+	<% else %>
+
+		<h1>Sign Up!</h1>
+
+		<form method="post" action="/signup">
+		<!-- <input type="text" name="name" placeholder="Name">
+		<input type="password" name="password" placeholder= "password"> -->
+
+		<div class="form-group">
+		    <label for="name">Full Name</label>
+		    <input type="text" name="name" class="form-control" placeholder="Name">
+		  </div>
+		  <div class="form-group">
+		    <label>Password</label>
+		    <input type="password" name="password" class="form-control" placeholder="Password">
+		  </div>
+		<div class="form-group">
+		    <label for="exampleInputFile">File input</label>
+		    <input type="file" id="exampleInputFile">
+		    <p class="help-block">Please upload a profile photo</p>
+		  </div>
+		<input type="submit" class="btn btn-primary" value="Sign up">
+		</form>
+
+
+	<% end %>
+</div>

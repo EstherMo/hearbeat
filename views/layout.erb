@@ -3,15 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HeartBeat</title>
 	<link rel="stylesheet" href="/css/style.css">
+	<link href="/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 <div class="wrapper">
 	<div class="header">
 		<a href="/" class="logo"></a>
-		<a class="button" href="/login">Log in</a>
-		<button type="button" class= "button"> Signup </button>
+		<% if current_user != {} %>
+		<pre class="right">YOU ARE LOGGED IN AS <%= current_user['name'] %></pre>
+		<a class="button btn btn-primary" href="/logout">Log Out</a>
+		<% else %>
+
+		<a class="button btn btn-primary" href="/login">Log in</a>
+		<a class= "button btn btn-primary" href="/signup"> Signup </a>
+		<% end %>
 		
 	</div>
 <%= yield %>

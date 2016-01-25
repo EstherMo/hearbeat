@@ -1,15 +1,36 @@
 
+<div class="container" style="margin-top: 35px">
+<div class="page-header page-heading">
+    <h1 class="pull-left">Forums</h1>
+  </div>
+
+   <div class="clearfix"></div>
+  </div>
+
+<p class="lead">Welcome to HeartBeat. This forum was created to discuss everything that relates to tradional Jewish Music. You can post links, chords, notes ,lyrics and more.. You may also discuss any ideas, critics, feature requests and all the ideas regarding our website. Please follow the forum rules and always check before posting to prevent duplicate posts.</p>
+
 <% @topics.each do |topic| %>
 	<!-- <div class="container"> -->
 	<% counter = 1 %>
 		<div class= "topics">
 			<h4> <%= topic["name"] %>: <%= topic["description"] %> <a class="new_post" href="/<%= topic["name"] %>/posts/new"> create new post </a> </h4> 
 			<% @posts.each do |post| %>
+			
 				<% if post["topic_id"] == topic["id"] %>
 					<div class= "posts">
 						<a href= "/<%= topic["name"] %>/posts/<%=counter%>/id=<%= post["id"]%>" > <%= post["title"] %>: <%= post["today_date"] %> </a> 
 						<a class="edit_post" href="/<%= topic["name"] %>/post/<%= post["id"]%>/edit"> Edit post </a> 
 						<a class="edit_post" href="/<%= topic["name"] %>/post/<%= post["id"]%>/delete"> Delete post </a>
+						<!-- connecting to database to get the amount of replies for this post -->
+						<% @@db = PG.connect(dbname: "heartbeat_forum") %>
+						<% @comments = @@db.exec_params("SELECT *
+              FROM posts
+              Join comments
+              ON posts.id = comments.post_id
+              WHERE posts.id = '#{post["id"]}' " 
+              ).to_a %>
+              <p> comments: <%= @comments.length%> </p>
+
 					</div>
 						<% counter += 1 %>
 				<% end %>
@@ -17,6 +38,8 @@
 		</div>	
 	<!-- </div> -->
 <% end %>
+
+</div>
 
 	
 
