@@ -1,6 +1,6 @@
 <div class="single_post">
-	<p class="lead post">
-		Title: <%= @post["title"] %> </br>
+	<div class="lead post">
+		<h2> Title: <%= @post["title"] %> </h2> 
 		Date: <%= @post["today_date"]%> </br>
 		<% if @user %>
 		By: <%= @user["name"] %> </br>
@@ -11,9 +11,7 @@
 	<a class="btn btn-primary" href="/<%= @topic %>/post/<%= id %>/newreply"> Reply to this post </a>
 	<a class="new_post reply btn btn-primary" href="/<%= @topic %>/post/<%= @post["id"]%>/edit"> Edit post </a>
 	<a class="btn btn-primary" href="/<%= @topic %>/post/<%= @post["id"]%>/delete"> Delete post </a>
-	</p>
-
-		
+	</div>
 	
 </div>
 
@@ -25,7 +23,7 @@
 		<p class="lead">
 			Title: <%= comment ["title"] %> </br>
 			Message: <%= comment["message"] %> </br>
-			likes: <%= comment ["likes"] %> </br>
+			<!-- likes: <%= comment ["likes"] %> </br> -->
 		</p>
 	</div>
 	</br>
